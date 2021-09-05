@@ -8,7 +8,9 @@ jobs:
         
   deploy-test:
     name: Deploy to testing
-    if: github.event.ref == 'refs/heads/test'
+    environment:
+      name: Testing
+    #if: github.event.ref == 'refs/heads/test'
     runs-on: ubuntu-latest
     steps:
       - run: echo Deploy to testing using ${{ secrets.mysecret-test }}
