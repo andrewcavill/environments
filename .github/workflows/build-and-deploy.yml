@@ -7,22 +7,22 @@ on:
 jobs:
         
   deploy-test:
+    name: Deploy to testing
     if: github.event.ref == 'refs/heads/test'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to testing
-        run: echo Deploying code into testing
+      - run: echo Deploying into testing
         
   deploy-stag:
+    name: Deploy to staging
     if: github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to staging
-        run: echo Deploying code into staging
+      - run: echo Deploying into staging
         
   deploy-prod:
+    name: Deploy to production
     needs: [deploy-stag]
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to production
-        run: echo Deploying code into production
+      - run: echo Deploying into production
