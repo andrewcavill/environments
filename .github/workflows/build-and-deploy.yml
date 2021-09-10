@@ -17,6 +17,8 @@ jobs:
         
   deploy-stag:
     name: Deploy to staging
+    environment:
+      name: Staging
     if: github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +26,8 @@ jobs:
         
   deploy-prod:
     name: Deploy to production
+    environment:
+      name: Production
     needs: [deploy-stag]
     runs-on: ubuntu-latest
     steps:
