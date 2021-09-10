@@ -2,20 +2,11 @@ name:  Deploy
 
 on:
   push:
-    branches: [ main, test ]
+    branches: [ main ]
 
 jobs:
         
-  deploy-test:
-    name: Deploy to testing
-    environment:
-      name: Testing
-    #if: github.event.ref == 'refs/heads/test'
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Deploy to testing using ${{ secrets.mysecret-test }}
-        
-  deploy-stag:
+  deploy-staging:
     name: Deploy to staging
     environment:
       name: Staging
@@ -24,11 +15,11 @@ jobs:
     steps:
       - run: echo Deploy to staging using ${{ secrets.mysecret-stag }}
         
-  deploy-prod:
+  deploy-production:
     name: Deploy to production
     environment:
       name: Production
-    needs: [deploy-stag]
+    needs: [deploy-staging]
     runs-on: ubuntu-latest
     steps:
       - run: echo Deploy to production using ${{ secrets.mysecret-prod }}
